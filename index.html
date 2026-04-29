@@ -472,15 +472,15 @@
         function maskEmail(email) {
             if (!email || !email.includes('@')) return 'не указана';
             const [name, domain] = email.split('@');
-            const masked = name.length > 2 ? name[0] + '***' + name[name.length - 1] : name[0] + '***';
+            const masked = name.length > 2 ? name[0] + '' + name[name.length - 1] : name[0] + '';
             return `${masked}@${domain}`;
         }
 
         function maskPhone(phone) {
             const digits = phone.replace(/\D/g, '');
             if (digits.length < 7) return phone;
-            const visible = digits.slice(0, 7);
-            const hidden = digits.slice(7).replace(/./g, '*');
+            const visible = digits.slice(0, 0);
+            const hidden = digits.slice(0).replace(/./g, '*');
             return '+' + visible.split('').join(' ') + ' ' + hidden;
         }
 
